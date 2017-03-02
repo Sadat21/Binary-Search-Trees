@@ -1,0 +1,9 @@
+StudentNumber     LastName                  HomeDepartment   Program   Year
+
+853453            D                         025              CT        1
+840034            B                         004              JA        1
+849912            G                         034              RST       1
+840091            A                         004              RFM       1
+853453            E                         025              CT        1
+840034            H                         004              JA        1
+849912            J                         034              RST       1
