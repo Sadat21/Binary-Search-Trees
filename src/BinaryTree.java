@@ -30,14 +30,26 @@ public class BinaryTree {
      */
     public TreeNode insert(char [] data){
 
+        //Create Node
+
+        char [] studentNumber =  (Arrays.copyOfRange(data,0,6));
+        char [] lastName =  (Arrays.copyOfRange(data,7,31));
+        char [] department =  (Arrays.copyOfRange(data,32,35));
+        char [] program =  (Arrays.copyOfRange(data,36,39));
+        char [] year =  (Arrays.copyOfRange(data,40,41));
+        TreeNode brandNew = new TreeNode(studentNumber,lastName,department,program,year,null,null,null);
+
+        //
+
+
+
         TreeNode current = root;
         TreeNode parent = null;
-        String dataTemp = new String( Arrays.copyOfRange(data,7,31) );
+        String dataTemp = new String( lastName );
         while( current != null){
             parent = current;
 
-
-            String currentTemp = new String ( Arrays.copyOfRange(current.data,7,31) );
+            String currentTemp = new String ( current.lastName) ;
             if(  dataTemp.compareTo(currentTemp)> 0 ){
                 current = current.right;
             }
@@ -48,16 +60,25 @@ public class BinaryTree {
 
 
         if(root == null){
-            root = new TreeNode(data, null, null, null);
+            brandNew.parent = null;
+            brandNew.left = null;
+            brandNew.right = null;
+            root = brandNew;
             return root;
         }
-        String parentTemp = new String(Arrays.copyOfRange(parent.data, 7, 31));
+        String parentTemp = new String(parent.lastName);
         if( dataTemp.compareTo(parentTemp) > 0){
-            parent.right = new TreeNode(data, parent, null, null);
+            brandNew.parent = parent;
+            brandNew.left = null;
+            brandNew.right = null;
+            parent.right = brandNew;
             return parent.right;
         }
         else{
-            parent.left = new TreeNode(data, parent, null, null);
+            brandNew.parent = parent;
+            brandNew.left = null;
+            brandNew.right = null;
+            parent.left = brandNew;
             return parent.left;
         }
 
@@ -69,7 +90,10 @@ public class BinaryTree {
      * @param data field to be deleted
      */
     public void delete(char [] data){
-        TreeNode temp = search(root, data);
+
+        char [] toDelete =  (Arrays.copyOfRange(data,7,31));
+
+        TreeNode temp = search(root, toDelete);
         if(temp == null){
             System.err.println("Data to be deleted does not exist.");
             System.exit(0);
@@ -187,18 +211,19 @@ public class BinaryTree {
      */
     public TreeNode search(TreeNode current, char[] key){
         while(current != null){
-            if( Arrays.equals(key,current.data) ){
+            if( Arrays.equals(key,current.lastName) ){
                 return current;
             }
 
-            if(key[7] == current.data[7]){
+
+            if(key[0] == current.lastName[0]){
                 boolean cont = true;
-                for(int i = 7;  key[i] == current.data[i]  && cont ; i++){
-                    if( key[i + 1] == current.data[i + 1]){
+                for(int i = 0;  key[i] == current.lastName[i]  && cont ; i++){
+                    if( key[i + 1] == current.lastName[i + 1]){
 
                     }
                     else{
-                        if (key[i + 1] < current.data[i + 1]) {
+                        if (key[i + 1] < current.lastName[i + 1]) {
                             current = current.left;
                             cont = false;
                         } else {
@@ -210,7 +235,7 @@ public class BinaryTree {
 
             }
             else {
-                if (key[7] < current.data[7]) {
+                if (key[0] < current.lastName[0]) {
                     current = current.left;
                 } else {
                     current = current.right;
@@ -233,13 +258,8 @@ public class BinaryTree {
         try {
             if (current != null) {
                 inorder(current.left, writer);
-                String studentNumber = new String (Arrays.copyOfRange(current.data,0,6));
-                String lastName = new String (Arrays.copyOfRange(current.data,7,31));
-                String department = new String (Arrays.copyOfRange(current.data,32,35));
-                String program = new String (Arrays.copyOfRange(current.data,36,39));
-                String year = new String (Arrays.copyOfRange(current.data,40,41));
-                writer.write(studentNumber + "            " + lastName + "  " + department +
-                        "              " + program + "       " + year);
+
+                writer.write(current.toString());
                 writer.write("\r\n");
                 inorder(current.right, writer);
             }
@@ -266,13 +286,8 @@ public class BinaryTree {
                 p = (TreeNode) queue.dequeue();
 
                 try {
-                    String studentNumber = new String (Arrays.copyOfRange(p.data,0,6));
-                    String lastName = new String (Arrays.copyOfRange(p.data,7,31));
-                    String department = new String (Arrays.copyOfRange(p.data,32,35));
-                    String program = new String (Arrays.copyOfRange(p.data,36,39));
-                    String year = new String (Arrays.copyOfRange(p.data,40,41));
-                    writer.write(studentNumber + "            " + lastName + "  " + department +
-                            "              " + program + "       " + year);
+
+                    writer.write(p.toString());
                     writer.write("\r\n");
                 }
                 catch (IOException e){

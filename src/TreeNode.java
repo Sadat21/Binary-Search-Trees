@@ -7,7 +7,11 @@ public class TreeNode {
     /**
      * data field
      */
-    public char [] data;
+    public char [] studentNumber;
+    public char [] lastName;
+    public char [] homeDepartment;
+    public char [] program;
+    public char [] year;
 
     /**
      * parent: points to predecessor node
@@ -28,23 +32,44 @@ public class TreeNode {
         parent = null;
         left = null;
         right = null;
-        data = new char[41];
+        studentNumber = new char[7];
+        lastName = new char[25];
+        homeDepartment = new char[4];
+        program = new char[4];
+        year = new char[1];
 
     }
 
     /**
      * Constructs a TreeNode
-     * @param data data field
+     * @param stdNum
+     * @param lName
+     * @param hmDep
+     * @param pgm
+     * @param yr
      * @param p parent TreeNode reference
      * @param l left child TreeNode reference
      * @param r right child TreeNode reference
      */
-    public TreeNode(char [] data, TreeNode p, TreeNode l, TreeNode r){
-        this.data = data;
+    public TreeNode(char [] stdNum, char [] lName, char [] hmDep, char [] pgm, char [] yr, TreeNode p, TreeNode l, TreeNode r){
         parent = p;
         left = l;
         right = r;
+        studentNumber = stdNum;
+        lastName = lName;
+        homeDepartment = hmDep;
+        program = pgm;
+        year = yr;
     }
+
+    @Override
+    public String toString(){
+        return String.format(new String(studentNumber) + "            " + new String(lastName) + "  "
+                + new String(homeDepartment) +
+                "              " + new String(program) + "       " + new String(year));
+    }
+
+
 
 
 }

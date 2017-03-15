@@ -18,7 +18,7 @@ public class AVLTree extends BinaryTree{
      */
     public TreeNode insert(char [] data) {
         TreeNode inserted = super.insert(data);
-        System.out.println(inserted.data);
+        System.out.println(inserted.lastName);
         int caseNumber  = 0;
         //Finding pivot if it exists
         TreeNode pivot = inserted;
@@ -32,10 +32,10 @@ public class AVLTree extends BinaryTree{
         }while(pivot.balance == 0);
 
         //Now to determine if we are adding to the short end or long end
-        String insertedData = new String(Arrays.copyOfRange(inserted.data, 7, 31));
+        String insertedData = new String (inserted.lastName);
         if(caseNumber == 0) {
 
-            String pivotData = new String(Arrays.copyOfRange(pivot.data, 7, 31));
+            String pivotData = new String(pivot.lastName);
 
             if (insertedData.compareTo(pivotData) > 0) {
                 if (pivot.balance == 1) {
@@ -66,7 +66,7 @@ public class AVLTree extends BinaryTree{
 
                 upper = inserted.parent;
                 while(upper != null){
-                    String parentData = new String(Arrays.copyOfRange(upper.data, 7, 31));
+                    String parentData = new String(upper.lastName);
                     if( insertedData.compareTo(parentData) > 0){
                         upper.balance++;
                     }
@@ -87,7 +87,7 @@ public class AVLTree extends BinaryTree{
 
                 upper = inserted.parent;
                 while(upper != null){
-                    String parentData = new String(Arrays.copyOfRange(upper.data, 7, 31));
+                    String parentData = new String(upper.lastName);
                     if( insertedData.compareTo(parentData) > 0){
                         upper.balance++;
                     }

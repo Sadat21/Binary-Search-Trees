@@ -68,6 +68,7 @@ public class TestingAVLTree {
             System.err.println("An exception has been caught: " + e.getMessage());
         }
 
+
         //Output to file stored in args[2] level by level
         try {
             FileWriter writer2 = new FileWriter(args[2]);
