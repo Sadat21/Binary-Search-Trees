@@ -5,7 +5,7 @@
 public class TreeNode {
 
     /**
-     * data field
+     * data fields
      */
     public char [] studentNumber;
     public char [] lastName;
@@ -42,11 +42,11 @@ public class TreeNode {
 
     /**
      * Constructs a TreeNode
-     * @param stdNum
-     * @param lName
-     * @param hmDep
-     * @param pgm
-     * @param yr
+     * @param stdNum StudentNumber
+     * @param lName Last Name
+     * @param hmDep Home Department
+     * @param pgm Program Name
+     * @param yr Year of Study
      * @param p parent TreeNode reference
      * @param l left child TreeNode reference
      * @param r right child TreeNode reference
@@ -62,14 +62,15 @@ public class TreeNode {
         year = yr;
     }
 
+    /**
+     * String representation of a TreeNode
+     * @return String
+     */
     @Override
     public String toString(){
         return String.format(new String(studentNumber) + "            " + new String(lastName) + "  "
                 + new String(homeDepartment) +
                 "              " + new String(program) + "       " + new String(year));
     }
-
-
-
 
 }

@@ -11,13 +11,19 @@ import java.util.Arrays;
  */
 public class TestingBinaryTree {
 
-
     /**
      *
      * @param args arg[0] is the name of the input file, arg[1] is the name of the ouput file which will be in order,
      *             args[2] is the name of the output file that will be displayed level by level from left to right
      */
     public static void main( String [] args) {
+
+        //Argument checking
+        if(args[0] == null || args[1] == null || args[2] == null){
+            System.err.println("Not enough arguments");
+            System.exit(1);
+        }
+
 
         //Create Binary Tree
         BinaryTree mainTree = new BinaryTree();
@@ -53,7 +59,7 @@ public class TestingBinaryTree {
             System.err.println("An IOException has been caught: " + e.getMessage());
         }
         catch (Exception e){
-            System.err.println("An Exception has been caught: " + e.getMessage());
+            System.err.println("An Exception has been caught: " + e.getStackTrace());
         }
 
 
@@ -61,7 +67,7 @@ public class TestingBinaryTree {
 
         try {
             FileWriter writer = new FileWriter(args[1]);
-            writer.write("StudentNumber     LastName                  HomeDepartment   Program   Year\n\n");
+            writer.write("StudentNumber      LastName                   HomeDepartment    Program    Year\n\n");
             mainTree.inorder(mainTree.root, writer);
             writer.close();
         }
@@ -75,7 +81,7 @@ public class TestingBinaryTree {
         //Output to file stored in args[2] level by level
         try {
             FileWriter writer2 = new FileWriter(args[2]);
-            writer2.write("StudentNumber     LastName                  HomeDepartment   Program   Year\n\n");
+            writer2.write("StudentNumber      LastName                   HomeDepartment    Program    Year\n\n");
             mainTree.breadthFirst(writer2);
             writer2.close();
         }

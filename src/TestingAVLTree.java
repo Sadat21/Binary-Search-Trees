@@ -17,6 +17,12 @@ public class TestingAVLTree {
      */
     public static void main( String [] args) {
 
+        //Argument checking
+        if(args.length != 3){
+            System.err.println("Not enough arguments");
+            System.exit(1);
+        }
+
         //Create Binary Tree
         AVLTree mainTree = new AVLTree();
 
@@ -46,9 +52,9 @@ public class TestingAVLTree {
         } catch (IOException e){
             System.err.println("An IOException has been caught: " + e.getMessage());
         }
-        catch (Exception e){
-            System.err.println("An Exception has been caught: " + e.getMessage());
-        }
+        /*catch (Exception e){
+            System.err.println("An Exception has been caught line 56: " + e.getMessage());
+        }*/
 
         System.out.println("Finished Inserting");
 

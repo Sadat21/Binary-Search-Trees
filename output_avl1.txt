@@ -1,7 +1,8 @@
 StudentNumber     LastName                  HomeDepartment   Program   Year
 
-853453            A                         025              CT        1
-840034            B                         004              JA        1
-853453            C                         025              CT        1
-849912            E                         034              RST       1
-840091            F                         004              RFM       1
+000000             A                           000              000         
+000000             B                           000              000         
+853453             C                           025              1CT         
+853453             D                           025              1CT         
+840091             F                           004              5RFM        
+853453             G                           025              1CT         

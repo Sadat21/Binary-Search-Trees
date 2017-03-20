@@ -1,4 +1,3 @@
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -13,6 +12,12 @@ public class BinaryTree {
      * Reference to the first Node in the binary tree
      */
     public TreeNode root;
+
+    /**
+     * Number of times we insert into the tree will increase value. TO be safe we will not count decreases
+     * We also start it at 16 for a safe buffer.
+     */
+    int queueSize = 16;
 
 
     /**
@@ -32,16 +37,14 @@ public class BinaryTree {
 
         //Create Node
 
-        char [] studentNumber =  (Arrays.copyOfRange(data,0,6));
-        char [] lastName =  (Arrays.copyOfRange(data,7,31));
-        char [] department =  (Arrays.copyOfRange(data,32,35));
-        char [] program =  (Arrays.copyOfRange(data,36,39));
+        char [] studentNumber =  (Arrays.copyOfRange(data,0,7));
+        char [] lastName =  (Arrays.copyOfRange(data,7,32));
+        char [] department =  (Arrays.copyOfRange(data,32,36));
+        char [] program =  (Arrays.copyOfRange(data,36,40));
         char [] year =  (Arrays.copyOfRange(data,40,41));
         TreeNode brandNew = new TreeNode(studentNumber,lastName,department,program,year,null,null,null);
 
-        //
-
-
+        //End of creating Node
 
         TreeNode current = root;
         TreeNode parent = null;
@@ -91,7 +94,7 @@ public class BinaryTree {
      */
     public void delete(char [] data){
 
-        char [] toDelete =  (Arrays.copyOfRange(data,7,31));
+        char [] toDelete =  (Arrays.copyOfRange(data,7,32));
 
         TreeNode temp = search(root, toDelete);
         if(temp == null){
@@ -216,26 +219,8 @@ public class BinaryTree {
             }
 
 
-            if(key[0] == current.lastName[0]){
-                boolean cont = true;
-                for(int i = 0;  key[i] == current.lastName[i]  && cont ; i++){
-                    if( key[i + 1] == current.lastName[i + 1]){
-
-                    }
-                    else{
-                        if (key[i + 1] < current.lastName[i + 1]) {
-                            current = current.left;
-                            cont = false;
-                        } else {
-                            current = current.right;
-                            cont = false;
-                        }
-                    }
-                }
-
-            }
             else {
-                if (key[0] < current.lastName[0]) {
+                if (new String(key).compareTo( new String(current.lastName) ) < 0 ) {
                     current = current.left;
                 } else {
                     current = current.right;
@@ -279,7 +264,7 @@ public class BinaryTree {
      */
     public void breadthFirst(FileWriter writer){
         TreeNode p = root;
-        Queue queue = new Queue(1000);
+        Queue queue = new Queue(queueSize);
         if( p != null ){
             queue.enqueue(p);
             while( !queue.isEmpty()){
